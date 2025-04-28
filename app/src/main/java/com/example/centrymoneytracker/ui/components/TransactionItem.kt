@@ -7,9 +7,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.centrymoneytracker.model.Transaction
+import java.text.NumberFormat
+import java.util.Locale
 
 @Composable
 fun TransactionItem(transaction: Transaction, onClick: () -> Unit) {
@@ -30,8 +31,10 @@ fun TransactionItem(transaction: Transaction, onClick: () -> Unit) {
                 color = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.height(8.dp))
+            val formattedAmount = NumberFormat.getNumberInstance(Locale.getDefault()).format(transaction.amount)
+
             Text(
-                text = "${transaction.amount} IDR",
+                text = "$formattedAmount IDR",
                 style = MaterialTheme.typography.bodyMedium,
                 color = if (transaction.type == "Income") MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error
             )
@@ -45,15 +48,15 @@ fun TransactionItem(transaction: Transaction, onClick: () -> Unit) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewTransactionItem() {
-    val dummyTransaction = Transaction(
-        id = 1,
-        type = "Income",
-        category = "Salary",
-        amount = 5000000.0,
-        date = "30-04-2025"
-    )
-    TransactionItem(transaction = dummyTransaction, onClick = {})
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun PreviewTransactionItem() {
+//    val dummyTransaction = Transaction(
+//        id = 1,
+//        type = "Income",
+//        category = "Salary",
+//        amount = 5000000.0,
+//        date = "30-04-2025"
+//    )
+//    TransactionItem(transaction = dummyTransaction, onClick = {})
+//}
