@@ -6,11 +6,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.centrymoneytracker.model.Transaction
 import com.example.centrymoneytracker.model.TransactionType
 import java.text.NumberFormat
 import java.util.Locale
+import com.example.centrymoneytracker.ui.theme.IncomeColor
+import com.example.centrymoneytracker.ui.theme.ExpenseColor
 
 @Composable
 fun TransactionGroupCard(
@@ -55,8 +58,7 @@ fun TransactionGroupCard(
 
                     Text(
                         text = "${if (transaction.type == TransactionType.INCOME) "+" else "-"}$formattedAmount IDR",
-                        color = if (transaction.type == TransactionType.INCOME) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error,
-
+                        color = if (transaction.type == TransactionType.INCOME) IncomeColor else ExpenseColor,
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }
@@ -75,12 +77,14 @@ fun TransactionGroupCard(
             ) {
                 Text(
                     text = "Income: ${NumberFormat.getNumberInstance(Locale.getDefault()).format(totalIncome)} IDR",
-                    color = MaterialTheme.colorScheme.primary,
+                    fontWeight = FontWeight.Bold,
+                    color = IncomeColor,
                     style = MaterialTheme.typography.bodySmall
                 )
                 Text(
                     text = "Expense: ${NumberFormat.getNumberInstance(Locale.getDefault()).format(totalExpense)} IDR",
-                    color = MaterialTheme.colorScheme.error,
+                    fontWeight = FontWeight.Bold,
+                    color = ExpenseColor,
                     style = MaterialTheme.typography.bodySmall
                 )
             }
