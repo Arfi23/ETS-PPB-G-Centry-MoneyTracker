@@ -18,8 +18,6 @@ fun TransactionGroupCard(
     transactions: List<Transaction>,
     onClick: (Transaction) -> Unit
 ) {
-//    val totalIncome = transactions.filter { it.type == "Income" }.sumOf { it.amount }
-//    val totalExpense = transactions.filter { it.type == "Expense" }.sumOf { it.amount }
     val totalIncome = transactions.filter { it.type == TransactionType.INCOME }.sumOf { it.amount }
     val totalExpense = transactions.filter { it.type == TransactionType.EXPENSE }.sumOf { it.amount }
 
@@ -56,8 +54,6 @@ fun TransactionGroupCard(
                         .format(transaction.amount)
 
                     Text(
-//                        text = "${if (transaction.type == "Income") "+" else "-"}$formattedAmount IDR",
-//                        color = if (transaction.type == "Income") MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error,
                         text = "${if (transaction.type == TransactionType.INCOME) "+" else "-"}$formattedAmount IDR",
                         color = if (transaction.type == TransactionType.INCOME) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error,
 

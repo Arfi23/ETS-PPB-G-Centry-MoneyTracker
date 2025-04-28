@@ -12,16 +12,6 @@ class TransactionViewModel : ViewModel() {
 
     private var nextId = 1
 
-//    fun addTransaction(type: String, category: String, amount: Double, date: String) {
-//        val newTransaction = Transaction(
-//            nextId++,
-//            type = type,
-//            category = category,
-//            amount = amount,
-//            date = date
-//        )
-//        _transactions.value = _transactions.value + newTransaction
-//    }
     fun addTransaction(type: TransactionType, category: String, amount: Double, date: String) {
         val newTransaction = Transaction(
             nextId++,

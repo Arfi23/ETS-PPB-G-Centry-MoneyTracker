@@ -171,7 +171,6 @@ fun AddTransactionScreen(navController: NavController, viewModel: TransactionVie
             Button(
                 onClick = {
                     val amountValue = amount.toDoubleOrNull() ?: 0.0
-//                    viewModel.addTransaction(selectedType.name, category, amountValue, date)
                     viewModel.addTransaction(selectedType, category, amountValue, date)
                     navController.popBackStack() // Balik ke Home setelah simpan
                 },
