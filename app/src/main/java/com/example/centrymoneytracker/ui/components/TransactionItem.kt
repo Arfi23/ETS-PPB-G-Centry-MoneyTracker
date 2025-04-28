@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.centrymoneytracker.model.Transaction
+import com.example.centrymoneytracker.model.TransactionType
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -36,7 +37,7 @@ fun TransactionItem(transaction: Transaction, onClick: () -> Unit) {
             Text(
                 text = "$formattedAmount IDR",
                 style = MaterialTheme.typography.bodyMedium,
-                color = if (transaction.type == "Income") MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error
+                color = if (transaction.type == TransactionType.INCOME) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -47,16 +48,3 @@ fun TransactionItem(transaction: Transaction, onClick: () -> Unit) {
         }
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun PreviewTransactionItem() {
-//    val dummyTransaction = Transaction(
-//        id = 1,
-//        type = "Income",
-//        category = "Salary",
-//        amount = 5000000.0,
-//        date = "30-04-2025"
-//    )
-//    TransactionItem(transaction = dummyTransaction, onClick = {})
-//}
