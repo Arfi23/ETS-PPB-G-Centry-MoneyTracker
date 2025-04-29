@@ -37,6 +37,9 @@ android {
     buildFeatures {
         compose = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.4"
+    }
 }
 
 dependencies {
@@ -49,17 +52,19 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.8.2")
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.material3)
-    implementation ("androidx.compose.ui:ui:1.6.4")
-    implementation("androidx.compose.ui:ui-graphics:1.8.0")
+    implementation ("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
 
     implementation("androidx.compose.material:material") // Untuk Material 2 (TopAppBar, TextField, dsb)
     implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.material:material-icons-extended:1.7.8")
+    implementation("androidx.compose.material:material-icons-extended")
 
     implementation("androidx.navigation:navigation-compose:2.8.9")
 
     implementation("com.google.android.material:material:1.11.0")
+
+//    implementation("com.github.smarttoolfactory:Compose-Chart:1.5.2")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

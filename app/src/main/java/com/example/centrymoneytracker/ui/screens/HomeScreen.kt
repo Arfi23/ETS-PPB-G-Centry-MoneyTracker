@@ -19,6 +19,8 @@ import com.example.centrymoneytracker.R
 import com.example.centrymoneytracker.model.Transaction
 import com.example.centrymoneytracker.ui.components.TransactionGroupCard
 import com.example.centrymoneytracker.viewmodel.TransactionViewModel
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PieChart
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,16 +47,31 @@ fun HomeScreen(
             )
         },
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = { navController.navigate("add_transaction") },
-                containerColor = MaterialTheme.colorScheme.primary,
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.plus),
-                    contentDescription = "Add Data Icon",
-                    modifier = Modifier.size(20.dp)
-                )
+            Column {
+                FloatingActionButton(
+                    onClick = { navController.navigate("analytics") },
+                    containerColor = MaterialTheme.colorScheme.secondary,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.piechart),
+                        contentDescription = "Analytics",
+                        modifier = Modifier.size(20.dp)
+                    )
+                }
+
+                FloatingActionButton(
+                    onClick = { navController.navigate("add_transaction") },
+                    containerColor = MaterialTheme.colorScheme.primary,
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.plus),
+                        contentDescription = "Add Data Icon",
+                        modifier = Modifier.size(20.dp)
+                    )
+                }
             }
+
         }
     ) { padding ->
         if (transactionsByDate.isEmpty()) {

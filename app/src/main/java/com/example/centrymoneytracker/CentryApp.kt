@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.centrymoneytracker.ui.screens.AddTransactionScreen
 import com.example.centrymoneytracker.ui.screens.HomeScreen
+import com.example.centrymoneytracker.ui.screens.AnalyticsScreen
 import com.example.centrymoneytracker.viewmodel.TransactionViewModel
 
 @Composable
@@ -21,5 +22,8 @@ fun CentryApp() {
         composable("add_transaction") {
             AddTransactionScreen(navController, transactionViewModel)
         }
+      composable("analytics") {
+          AnalyticsScreen(navController)
+      }
     }
 }
