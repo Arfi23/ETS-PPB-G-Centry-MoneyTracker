@@ -14,6 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.centrymoneytracker.PoppinsFont
 import com.example.centrymoneytracker.R
 import com.example.centrymoneytracker.model.Transaction
 import com.example.centrymoneytracker.ui.components.TransactionGroupCard
@@ -33,14 +34,26 @@ fun HomeScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Centry Money Tracker") }
+                title = { Text("Centry Money Tracker", fontFamily = PoppinsFont) },
+                navigationIcon = {
+                    Image(
+                        painter = painterResource(id = R.drawable.logo_icon),
+                        contentDescription = "Logo Icon",
+                        modifier = Modifier.size(80.dp)
+                    )
+                }
             )
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navController.navigate("add_transaction") }
+                onClick = { navController.navigate("add_transaction") },
+                containerColor = MaterialTheme.colorScheme.primary,
             ) {
-                Text("+")
+                Image(
+                    painter = painterResource(id = R.drawable.plus),
+                    contentDescription = "Add Data Icon",
+                    modifier = Modifier.size(20.dp)
+                )
             }
         }
     ) { padding ->
@@ -68,13 +81,20 @@ fun HomeScreen(
                     Text(
                         text = "Belum ada transaksi",
                         style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+                        fontFamily = PoppinsFont
                     )
                 }
             }
         } else {
             LazyColumn(
-                contentPadding = padding,
+//                contentPadding = padding,
+                contentPadding = PaddingValues(
+                    start = 8.dp,
+                    top = padding.calculateTopPadding() + 8.dp,
+                    end = 8.dp,
+                    bottom = padding.calculateBottomPadding() + 80.dp // jarak dengan FAB
+                ),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier
                     .fillMaxSize()

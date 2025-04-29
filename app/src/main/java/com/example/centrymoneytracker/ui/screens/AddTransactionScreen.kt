@@ -23,6 +23,9 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
+import com.example.centrymoneytracker.PoppinsFont
+import com.example.centrymoneytracker.ui.theme.PrimaryColor
 import java.util.*
 
 
@@ -51,7 +54,7 @@ fun AddTransactionScreen(navController: NavController, viewModel: TransactionVie
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Add Transaction") }
+                title = { Text("Tambahkan Data Transaksi", fontFamily = PoppinsFont) }
             )
         }
     ) { innerPadding ->
@@ -64,7 +67,7 @@ fun AddTransactionScreen(navController: NavController, viewModel: TransactionVie
             horizontalAlignment = Alignment.Start
         ) {
             // Pilih jenis transaksi
-            Text(text = "Transaction Type", style = MaterialTheme.typography.titleMedium)
+            Text(text = "Jenis Transaksi", style = MaterialTheme.typography.titleMedium , fontFamily = PoppinsFont)
             Row {
                 RadioButton(
                     selected = selectedType == TransactionType.INCOME,
@@ -73,7 +76,7 @@ fun AddTransactionScreen(navController: NavController, viewModel: TransactionVie
                         category = "" //reset category saat ganti tipe transaksi
                     }
                 )
-                Text("Income", modifier = Modifier.padding(start = 8.dp))
+                Text("Pemasukan", modifier = Modifier.padding(start = 8.dp), fontFamily = PoppinsFont)
 
                 Spacer(modifier = Modifier.width(16.dp))
 
@@ -84,13 +87,13 @@ fun AddTransactionScreen(navController: NavController, viewModel: TransactionVie
                         category = "" //reset category saat ganti tipe transaksi
                     }
                 )
-                Text("Expense", modifier = Modifier.padding(start = 8.dp))
+                Text("Pengeluaran", modifier = Modifier.padding(start = 8.dp), fontFamily = PoppinsFont)
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
             // Dropdown Kategori
-            Text(text = "Category", style = MaterialTheme.typography.titleMedium)
+            Text(text = "Kategori", style = MaterialTheme.typography.titleMedium, fontFamily = PoppinsFont)
             ExposedDropdownMenuBox(
                 expanded = expanded,
                 onExpandedChange = { expanded = !expanded }
@@ -99,7 +102,7 @@ fun AddTransactionScreen(navController: NavController, viewModel: TransactionVie
                     value = category,
                     onValueChange = {},
                     readOnly = true,
-                    label = { Text("Select Category") },
+                    label = { Text("Pilih Kategori") },
                     trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                     modifier = Modifier.menuAnchor().fillMaxWidth()
                 )
@@ -130,7 +133,7 @@ fun AddTransactionScreen(navController: NavController, viewModel: TransactionVie
                         amount = input
                     }
                 },
-                label = { Text("Amount") },
+                label = { Text("Nominal", fontFamily = PoppinsFont) },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
@@ -142,7 +145,7 @@ fun AddTransactionScreen(navController: NavController, viewModel: TransactionVie
             OutlinedTextField(
                 value = date,
                 onValueChange = {},
-                label = { Text("Date") },
+                label = { Text("Tanggal", fontFamily = PoppinsFont) },
                 modifier = Modifier.fillMaxWidth(),
                 readOnly = true,
                 trailingIcon = {
@@ -159,7 +162,7 @@ fun AddTransactionScreen(navController: NavController, viewModel: TransactionVie
                         )
                         datePickerDialog.show()
                     }) {
-                        Icon(imageVector = Icons.Filled.DateRange, contentDescription = "Select Date")
+                        Icon(imageVector = Icons.Filled.DateRange, contentDescription = "Pilih Tanggal")
                     }
                 }
             )
@@ -175,9 +178,13 @@ fun AddTransactionScreen(navController: NavController, viewModel: TransactionVie
                     navController.popBackStack() // Balik ke Home setelah simpan
                 },
                 modifier = Modifier.align(Alignment.CenterHorizontally),
-                enabled = isFormValid // tombol hanya aktif kalau form valid
+                enabled = isFormValid, // tombol hanya aktif kalau form valid
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary, // warna latar tombol
+                    contentColor = MaterialTheme.colorScheme.onPrimary // warna teks tombol
+                )
             ) {
-                Text("Save")
+                Text("Simpan", fontFamily = PoppinsFont, fontWeight = FontWeight.Bold)
             }
         }
     }

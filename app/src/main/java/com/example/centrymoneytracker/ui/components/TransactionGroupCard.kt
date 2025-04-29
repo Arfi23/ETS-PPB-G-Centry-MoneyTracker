@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.example.centrymoneytracker.PoppinsFont
 import com.example.centrymoneytracker.model.Transaction
 import com.example.centrymoneytracker.model.TransactionType
 import java.text.NumberFormat
@@ -36,7 +37,8 @@ fun TransactionGroupCard(
             Text(
                 text = date,
                 style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.primary
+                color = MaterialTheme.colorScheme.primary,
+                fontFamily = PoppinsFont
             )
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -51,7 +53,8 @@ fun TransactionGroupCard(
                 ) {
                     Text(
                         text = transaction.category,
-                        style = MaterialTheme.typography.bodyMedium
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontFamily = PoppinsFont
                     )
                     val formattedAmount = NumberFormat.getNumberInstance(Locale.getDefault())
                         .format(transaction.amount)
@@ -59,7 +62,8 @@ fun TransactionGroupCard(
                     Text(
                         text = "${if (transaction.type == TransactionType.INCOME) "+" else "-"}$formattedAmount IDR",
                         color = if (transaction.type == TransactionType.INCOME) IncomeColor else ExpenseColor,
-                        style = MaterialTheme.typography.bodyMedium
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontFamily = PoppinsFont
                     )
                 }
             }
@@ -76,16 +80,18 @@ fun TransactionGroupCard(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "Income: ${NumberFormat.getNumberInstance(Locale.getDefault()).format(totalIncome)} IDR",
+                    text = "Pemasukan: ${NumberFormat.getNumberInstance(Locale.getDefault()).format(totalIncome)} IDR",
                     fontWeight = FontWeight.Bold,
                     color = IncomeColor,
-                    style = MaterialTheme.typography.bodySmall
+                    style = MaterialTheme.typography.bodySmall,
+                    fontFamily = PoppinsFont
                 )
                 Text(
-                    text = "Expense: ${NumberFormat.getNumberInstance(Locale.getDefault()).format(totalExpense)} IDR",
+                    text = "Pengeluaran: ${NumberFormat.getNumberInstance(Locale.getDefault()).format(totalExpense)} IDR",
                     fontWeight = FontWeight.Bold,
                     color = ExpenseColor,
-                    style = MaterialTheme.typography.bodySmall
+                    style = MaterialTheme.typography.bodySmall,
+                    fontFamily = PoppinsFont
                 )
             }
         }
